@@ -1,14 +1,17 @@
 import createEpisodeContainer from './createEpisodeContainer.js'
-
+import searchEpisode from './searchEpisode.js'
 //take Episodes from DB
+let allEpisodes = [];
 function setup() {
-  const allEpisodes = getAllEpisodes();
+   allEpisodes = getAllEpisodes();
   makePageForEpisodes(allEpisodes);
 }
 
 //prepare the page
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
+  rootElem.innerHTML ='';
+
   const main =document.createElement('main'); //main container
   main.classList.add('mainContainer');
 
@@ -22,3 +25,12 @@ function makePageForEpisodes(episodeList) {
 
 
 window.onload = setup;
+
+//Search function
+const seachArea = document.getElementById('search');
+const serachLabel = document.getElementById('serachLabel');
+seachArea.addEventListener('input', ()=>{
+    const episodesIncludeInput= searchEpisode(allEpisodes ,seachArea.value);
+    serachLabel.innerText = `Displaying ${episodesIncludeInput.length}/${allEpisodes.length} episodes`;
+    makePageForEpisodes(episodesIncludeInput);
+  });
