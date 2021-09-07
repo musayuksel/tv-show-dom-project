@@ -2,7 +2,7 @@ import createEpisodeContainer from './createEpisodeContainer.js'
 import searchEpisode from './searchEpisode.js'
 import  episodeSelectMenu from './selectMenu.js'
 //take Episodes from DB
-let allEpisodes = [];
+let allEpisodes = [];// declared global because i will use with other func.
 function setup() {
   allEpisodes = getAllEpisodes();
   episodeSelectMenu(allEpisodes)
@@ -45,3 +45,8 @@ seachArea.addEventListener('input', (event)=>{
 
 
 //Episode select menu
+const select = document.getElementById('episodeSelect');
+select.addEventListener('change',()=>{
+  const selectedEpisode = searchEpisode(allEpisodes, select.value);
+  makePageForEpisodes(selectedEpisode);
+});
