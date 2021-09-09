@@ -6,21 +6,26 @@
     <title>TV Show Project | Musa Yuksel (musayuksel)</title>
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
   </head>
 
   <body>
     <header>
+      <img src="./icons/logo.png" alt="logo" id="logo">
       <select name="episode" id="episodeSelect">
         <option value="">--Please choose an episode--</option>
       </select>
       <form action="">
         <input type="search" name="search" id="search" placeholder="Search">
-        <label for="search" id="serachLabel"></label>
+        <label for="search" id="searchLabel"></label>
       </form>
     </header>
-    <div id="root">
-    </div>
+    <main id="root">
+    </main>
+    <footer id= 'footer'> 
+      <a href="https://www.tvmaze.com/api#licensing" target="_blank">
+        &copy; TVmaze.com </a>
+    </footer>
 
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>

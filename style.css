@@ -1,3 +1,227 @@
-#root {
-  color: red;
+:root {
+  --teal: #1891a7;
+  --raisin-black: #056272;
+  --middle-blue-purple: #7d70baff;
+  --ivory: #0cffa1;
+  --white: #fff;
+}
+/* General styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: var(--white);
+}
+
+/* Header styles */
+header {
+  background: linear-gradient(
+    180deg,
+    #056272 2.67%,
+    rgba(5, 98, 114, 0.25) 150%
+  );
+  box-shadow: 2px 5px 6px 2px rgba(110, 110, 110, 0.527);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 150px;
+  margin-bottom: 16px;
+  padding: 1rem;
+}
+#logo {
+  height: 64px;
+}
+
+#episodeSelect,
+#search {
+  background-color: #fff;
+  border: none;
+  border-radius: 18px;
+  color: #056272;
+  cursor: pointer;
+  padding: 10px;
+}
+/* for phone size we won't use it */
+#episodeSelect {
+  display: none;
+}
+header form {
+  align-self: start;
+  display: flex;
+  align-items: center;
+}
+
+#searchLabel {
+  color: var(--white);
+  font-size: 0.5rem;
+}
+
+#episodeSelect:focus,
+#search:focus {
+  outline: none;
+}
+
+/* Main section style  */
+main {
+  padding: 0 16px;
+}
+/* Main container style */
+.mainContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 32px 16px;
+}
+.card {
+  background-color: var(--teal);
+  color: var(--white);
+  box-shadow: 2px 5px 6px 2px rgba(110, 110, 110, 0.527);
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.8s ease;
+  position: relative; /* for summary*/
+}
+
+/* Card Heading style */
+.cardHeading {
+  background-color: var(--raisin-black);
+  font-size: 1rem;
+  font-weight: 500;
+  height: 4rem;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+/* Image style */
+.card .episodeImg {
+  border-radius: 0.6rem;
+  margin: 24px auto;
+  object-fit: cover;
+  width: 85%;
+}
+
+/* Summary styles */
+.card article {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 7.5%;
+  margin: 16px 0;
+}
+.card article p {
+  color: black;
+  padding: 1rem;
+  transition: opacity 0.8s;
+  position: absolute;
+  opacity: 0; /*default dont show*/
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 80%;
+  overflow: scroll;
+  transform: translateY(100%);
+  transition: all 0.5s ease;
+  background-color: var(--white);
+}
+/* Article show efffect => jss will add className*/
+article.openSummary p {
+  opacity: 1;
+  transform: translateY(0%);
+}
+
+.arrowIcon {
+  border: 1px solid white;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 36px;
+  margin: 8px 0;
+  padding: 10px;
+  transition: transform 0.5s ease;
+  z-index: 1;
+}
+
+.arrowIcon:hover,
+.playIcon:hover {
+  transform: scale(1.1);
+}
+
+.openSummary .arrowIcon {
+  transform: rotate(180deg);
+}
+
+/* Play Icon */
+.playIcon {
+  border: 1px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 36px;
+  transition: transform 0.5s ease;
+  padding: 10px 20px;
+}
+
+/* Play icon url */
+.episodeUrl {
+  z-index: 1;
+}
+.card article span {
+  font-size: 1.5rem;
+  font-style: italic;
+  z-index: 1;
+}
+
+/* Footer Style */
+#footer {
+  background-color: var(--ivory);
+  border-top: 1px solid var(--middle-blue-purple);
+  margin: 2rem 0 0;
+  padding: 4rem;
+  font-size: 2rem;
+  text-align: center;
+}
+#footer a {
+  color: var(--raisin-black);
+  text-decoration: none;
+}
+/* Responsive media screens (Phone size first) */
+/* Tablet size */
+@media screen and (min-width: 600px) {
+  header {
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  #episodeSelect {
+    display: block;
+  }
+  header form {
+    align-self: inherit;
+  }
+  .mainContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* Laptop size */
+@media screen and (min-width: 1024px) {
+  header {
+    height: 100px;
+  }
+  header form {
+    flex-direction: column;
+    width: inherit;
+  }
+  .mainContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+/* Bigger screen */
+@media screen and (min-width: 1200px) {
+  .mainContainer {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }

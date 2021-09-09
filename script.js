@@ -1,6 +1,7 @@
 import createEpisodeContainer from './createEpisodeContainer.js'
 import searchEpisode from './searchEpisode.js'
 import  episodeSelectMenu from './selectMenu.js'
+
 //take Episodes from DB
 let allEpisodes = [];// declared global because i will use with other func.
 function setup() {
@@ -12,9 +13,9 @@ function setup() {
 //prepare the page
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
-  rootElem.innerHTML ='';
+  rootElem.innerHTML ='';//this way is NOT effective for DOM !!!
 
-  const main =document.createElement('main'); //main container
+  const main = document.createElement('ul'); //main container
   main.classList.add('mainContainer');
 
   //for every episode create cards
@@ -25,24 +26,19 @@ function makePageForEpisodes(episodeList) {
   rootElem.appendChild(main);
 }
 
-
-
-
-setup()
-// window.onload = setup;
+window.onload = setup;
 
 //Search function
 const seachArea = document.getElementById('search');
-const serachLabel = document.getElementById('serachLabel');
+const searchLabel = document.getElementById('searchLabel');
 seachArea.addEventListener('input', (event)=>{
     event.preventDefault();
     const episodesIncludeInput= searchEpisode(allEpisodes ,seachArea.value);
-    serachLabel.innerText = `Displaying ${episodesIncludeInput.length}/${allEpisodes.length} episodes`;
+    seachArea.value === '' ? searchLabel.innerText ='':
+    searchLabel.innerText = `Displaying ${episodesIncludeInput.length}/${allEpisodes.length} episodes`;
     makePageForEpisodes(episodesIncludeInput);
     episodeSelectMenu(episodesIncludeInput);//update select menu
   });
-
-
 
 //Episode select menu
 const select = document.getElementById('episodeSelect');
