@@ -1,6 +1,7 @@
 import createEpisodeContainer from './createEpisodeContainer.js'
 import searchEpisode from './searchEpisode.js'
 import  episodeSelectMenu from './selectMenu.js'
+import deleteElementsWithCss from './deleteElementsWithCss.js'
 
 //take Episodes from DB
 let allEpisodes = [];// declared global because i will use with other func.
@@ -36,13 +37,19 @@ seachArea.addEventListener('input', (event)=>{
     const episodesIncludeInput= searchEpisode(allEpisodes ,seachArea.value);
     seachArea.value === '' ? searchLabel.innerText ='':
     searchLabel.innerText = `Displaying ${episodesIncludeInput.length}/${allEpisodes.length} episodes`;
-    makePageForEpisodes(episodesIncludeInput);
+    
+    deleteElementsWithCss(episodesIncludeInput)
+    // makePageForEpisodes(episodesIncludeInput);
     episodeSelectMenu(episodesIncludeInput);//update select menu
   });
-
-//Episode select menu
-const select = document.getElementById('episodeSelect');
-select.addEventListener('change',()=>{
-  const selectedEpisode = searchEpisode(allEpisodes, select.value);
-  makePageForEpisodes(selectedEpisode);
+  
+  //Episode select menu
+  const select = document.getElementById('episodeSelect');
+  select.addEventListener('change',(event)=>{
+    const selectedEpisode = searchEpisode(allEpisodes, event.target.value);
+    // makePageForEpisodes(selectedEpisode);
+    
+    deleteElementsWithCss(selectedEpisode);
 });
+
+

@@ -225,3 +225,6 @@ article.openSummary p {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+ul li.deleteOnScreen {
+  display: none;
+}

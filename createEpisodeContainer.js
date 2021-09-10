@@ -6,9 +6,11 @@ export default function createEpisodeContainer(
   image,
   summary,
   runtime,
+  id,
   url}){
   const card = document.createElement('li');
   card.className="card";
+  card.id =id;
 
   //name, season & episode number format
   const h2 = document.createElement('h2');

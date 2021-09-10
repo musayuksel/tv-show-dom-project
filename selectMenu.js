@@ -9,6 +9,10 @@ export default function episodeSelectMenu (allEpisodes){
     option.text = 'There is no episode for shown';
     fragment.appendChild(option)
   } else {
+    const option = document.createElement('option');
+    option.text = 'SHOW ALL';
+    option.value = '';
+    fragment.appendChild(option)
     allEpisodes.forEach(episode =>{
       const option = document.createElement('option');
       option.value = episode.name;
