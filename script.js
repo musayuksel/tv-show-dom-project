@@ -5,8 +5,18 @@ import deleteElementsWithCss from './deleteElementsWithCss.js'
 
 //take Episodes from DB
 let allEpisodes = [];// declared global because i will use with other func.
+let url ='https://api.tvmaze.com/shows/22036/episodes'
+//https://api.tvmaze.com/shows/82/episodes
+fetch(url)
+  .then(response=>response.json())
+  .then(data =>{
+    allEpisodes =data;
+     setup()
+    }
+);
+
 function setup() {
-  allEpisodes = getAllEpisodes();
+  // allEpisodes = getAllEpisodes();
   episodeSelectMenu(allEpisodes)
   makePageForEpisodes(allEpisodes);
 }
@@ -27,7 +37,7 @@ function makePageForEpisodes(episodeList) {
   rootElem.appendChild(main);
 }
 
-window.onload = setup;
+// window.onload = setup;
 
 //Search function
 const seachArea = document.getElementById('search');
@@ -48,7 +58,6 @@ seachArea.addEventListener('input', (event)=>{
   select.addEventListener('change',(event)=>{
     const selectedEpisode = searchEpisode(allEpisodes, event.target.value);
     // makePageForEpisodes(selectedEpisode);
-    
     deleteElementsWithCss(selectedEpisode);
 });
 
