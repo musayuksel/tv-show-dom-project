@@ -1,16 +1,18 @@
-import createEpisodeContainer from './createEpisodeContainer.js'
-import searchEpisode from './searchEpisode.js'
-import  episodeSelectMenu from './selectMenu.js'
-import deleteElementsWithCss from './deleteElementsWithCss.js'
-
+import createEpisodeContainer from './Episodes/createEpisodeContainer.js'
+import searchEpisode from './Episodes/searchEpisode.js'
+import  episodeSelectMenu from './Episodes/selectMenu.js'
+import deleteElementsWithCss from './Episodes/deleteElementsWithCss.js'
+import showSelectMenu from './Shows/showSelectMenu.js'
+import getAllShows from './Shows/shows.js'
 //take Episodes from DB
 let allEpisodes = [];// declared global because i will use with other func.
-let url ='https://api.tvmaze.com/shows/22036/episodes'
+let url ='https://api.tvmaze.com/shows/83/episodes'
 //https://api.tvmaze.com/shows/82/episodes
 fetch(url)
   .then(response=>response.json())
   .then(data =>{
-    allEpisodes =data;
+    allEpisodes = data;
+    console.log(data);
      setup()
     }
 );
@@ -19,9 +21,12 @@ function setup() {
   // allEpisodes = getAllEpisodes();
   episodeSelectMenu(allEpisodes)
   makePageForEpisodes(allEpisodes);
+  const showsArray =getAllShows()
+  showSelectMenu(showsArray);
+ 
 }
 
-//prepare the page
+//PREPARE THE PAGE
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
   rootElem.innerHTML ='';//this way is NOT effective for DOM !!!
@@ -39,7 +44,7 @@ function makePageForEpisodes(episodeList) {
 
 // window.onload = setup;
 
-//Search function
+//SEARCH FUNCTION
 const seachArea = document.getElementById('search');
 const searchLabel = document.getElementById('searchLabel');
 seachArea.addEventListener('input', (event)=>{
@@ -53,7 +58,7 @@ seachArea.addEventListener('input', (event)=>{
     episodeSelectMenu(episodesIncludeInput);//update select menu
   });
   
-  //Episode select menu
+  //EPISODE SELECT MENU
   const select = document.getElementById('episodeSelect');
   select.addEventListener('change',(event)=>{
     const selectedEpisode = searchEpisode(allEpisodes, event.target.value);

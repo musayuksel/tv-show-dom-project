@@ -39,6 +39,7 @@ header {
 }
 
 #episodeSelect,
+#showSelect,
 #search {
   background-color: #fff;
   border: none;
@@ -48,8 +49,10 @@ header {
   padding: 10px;
 }
 /* for phone size we won't use it */
-#episodeSelect {
+#episodeSelect,
+#showSelect {
   display: none;
+  width: 40%;
 }
 header form {
   align-self: start;
@@ -63,6 +66,7 @@ header form {
 }
 
 #episodeSelect:focus,
+#showSelect:focus,
 #search:focus {
   outline: none;
 }
@@ -188,7 +192,7 @@ article.openSummary p {
   color: var(--raisin-black);
   text-decoration: none;
 }
-/* Responsive media screens (Phone size first) */
+/* RESPONSIVE MEDIA SCREENS (PHONE SIZE FIRST) */
 /* Tablet size */
 @media screen and (min-width: 600px) {
   header {
@@ -196,7 +200,8 @@ article.openSummary p {
     flex-direction: row;
     flex-wrap: wrap;
   }
-  #episodeSelect {
+  #episodeSelect,
+  #showSelect {
     display: block;
   }
   header form {

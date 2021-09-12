@@ -19,7 +19,7 @@ export default function createEpisodeContainer(
 
   //episode image
   const img = document.createElement('img')
-  img.src = `${image.medium}`;
+  img.src = ` ${image!==null? image.medium : ''}`;
   img.alt= name;
   img.className = 'episodeImg';
 
