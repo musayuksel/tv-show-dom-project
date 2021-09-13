@@ -12,9 +12,8 @@
   <body>
     <header>
       <img src="./icons/logo.png" alt="logo" id="logo">
-      <select name="show" id="showSelect">
-        <option value="">--Please choose an Show--</option>
-      </select>
+    </header>
+    <section id= 'episodesMenuContainer'>
       <select name="episode" id="episodeSelect">
         <option value="">--Please choose an episode--</option>
       </select>
@@ -22,7 +21,15 @@
         <input type="search" name="search" id="search" placeholder="Search">
         <label for="search" id="searchLabel"></label>
       </form>
-    </header>
+  </section>
+
+    <section id = showsMenuContainer>
+      <input type="search" name="showSearch" id="showSearch" placeholder="Search">
+      <label for="showSearch" id="showSearchLabel">label</label>
+      <select name="show" id="showSelect">
+        <option value="">--Please choose an Show--</option>
+      </select>
+    </section>
     <main id="root">
     </main>
     <footer id= 'footer'> 
@@ -32,6 +39,7 @@
 
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>
+    <script src="./Shows/shows.js"></script>
 
     <!-- Loads YOUR javascript code -->
     <script src="script.js" type="module"></script>
