@@ -1,6 +1,5 @@
 //CREATE SHOW SELECT MENU OPTIONS FOR SHOW
-export default function showSelectMenu (showsArrayUnordered){
-  const showsArrayAlphabeticalOrder = alphabeticalOrder(showsArrayUnordered)
+export default function showSelectMenu (showsArrayAlphabeticalOrder){
   const showSelect = document.getElementById('showSelect');
   var fragment = document.createDocumentFragment();//this fragment wiill add directly under the select
   showSelect.innerHTML ='';
@@ -21,12 +20,3 @@ export default function showSelectMenu (showsArrayUnordered){
 }
 
 
-function alphabeticalOrder(showArray){
-  return showArray.sort((a,b) => {
-    const name1 =  a.name.toLowerCase()
-    const name2 =  b.name.toLowerCase();
-    if(name1 < name2){ return -1}
-    if(name1 > name2){ return 1}
-    return 0; 
-  });
-}
