@@ -25,8 +25,10 @@ export default function showComponent(
 
   const showContainer = document.createElement('article');
   showContainer.innerHTML=summary;//summary is html tag
+  showContainer.className = 'summaryContainer';
 
   const statusContainer = document.createElement('article');
+  statusContainer.className = 'statusContainer';
   const ratedP = document.createElement('p');
   ratedP.innerText = 'Rated: ';
   const ratedSpan = document.createElement('span');

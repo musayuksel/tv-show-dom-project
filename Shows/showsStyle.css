@@ -1,0 +1,93 @@
+.mainShowContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 32px 16px;
+}
+.showCard {
+  background-color: var(--teal);
+  box-shadow: 2px 5px 6px 2px rgba(110, 110, 110, 0.527);
+  color: var(--white);
+  cursor: pointer;
+  display: grid;
+  grid-gap: 12px 0px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    "heading heading"
+    "image status"
+    "summary summary";
+  justify-items: center;
+  transition: all 0.3s ease;
+  /* align-items: center; */
+}
+.showCard:hover {
+  box-shadow: 2px 5px 6px 2px rgba(110, 110, 110, 0.699);
+  transform: scale(1.01);
+}
+
+.showHeading {
+  grid-area: heading; /* grid area name */
+  background-color: var(--raisin-black);
+  font-size: 1rem;
+  font-weight: 500;
+  justify-self: stretch;
+  padding: 1rem 0;
+  text-align: center;
+}
+.showImg {
+  grid-area: image; /* grid area name */
+  box-shadow: 2px 5px 6px 2px hsla(189, 92%, 23%, 0.3);
+  border-radius: 12px;
+  transition: all 0.5s ease;
+  /* max-height: 100%; */
+  max-width: 80%;
+}
+.showImg:hover {
+  box-shadow: 2px 5px 6px 2px hsla(189, 92%, 23%, 0.788);
+  transform: scale(1.05);
+}
+
+.summaryContainer {
+  background-color: #fff;
+  color: var(--raisin-black);
+  grid-area: summary; /* grid area name */
+  padding: 1rem;
+}
+.statusContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  grid-area: status; /* grid area name */
+  width: 100%;
+}
+.statusContainer p {
+  font-weight: 500;
+}
+.statusContainer p span {
+  font-size: 1rem;
+  /* font-style: italic; */
+  font-weight: 300;
+}
+
+/* RESPONSIVE MEDIA SCREENS (PHONE SIZE FIRST) */
+/* Tablet size */
+@media screen and (min-width: 720px) {
+  .showCard {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+      "heading heading heading heading"
+      "image summary summary status";
+  }
+  .statusContainer {
+    background-color: #fff;
+    color: var(--raisin-black);
+    justify-content: flex-start;
+  }
+  .statusContainer p {
+    margin-bottom: 1rem;
+  }
+  .summaryContainer {
+    border-radius: 10px 0 0 10px;
+    max-height: 350px;
+    overflow: scroll;
+  }
+}

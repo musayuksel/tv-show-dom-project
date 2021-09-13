@@ -42,13 +42,11 @@ function setup() {
 const rootElem = document.getElementById("root");//i will use for 2 function
 //PREPARE THE PAGE FOR SHOWS
 function makePageForShows(showList){
-  document.getElementById('showsMenuContainer').style.display = 'block';
+  document.getElementById('showsMenuContainer').style.display = 'flex';
   document.getElementById('episodesMenuContainer').style.display = 'none';
   
-
-
   const main = document.createElement('ul'); //main container
-  main.classList.add('mainContainer');
+  main.classList.add('mainShowContainer');
   rootElem.innerHTML ='';
   showList.forEach(show =>{
     const showCard = showComponent(show);
