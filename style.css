@@ -27,15 +27,14 @@ header {
   box-shadow: 2px 5px 6px 2px rgba(110, 110, 110, 0.527);
   border-radius: 8px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  height: 150px;
   margin-bottom: 16px;
   padding: 1rem;
 }
 #logo {
-  height: 64px;
+  height: 96px;
+  padding: 1rem;
 }
 
 #episodeSelect,
@@ -51,11 +50,11 @@ header {
 /* for phone size we won't use it */
 #episodeSelect,
 #showSelect {
-  display: none;
-  width: 40%;
+  /* display: none; */
+  /* width: 40%; */
 }
 header form {
-  align-self: start;
+  /* align-self: start; */
   display: flex;
   align-items: center;
 }
@@ -70,7 +69,23 @@ header form {
 #search:focus {
   outline: none;
 }
-
+#episodesMenuContainer {
+  background: linear-gradient(
+    180deg,
+    #056272 2.67%,
+    rgba(5, 98, 114, 0.25) 150%
+  );
+  box-shadow: 2px 5px 6px 2px rgba(110, 110, 110, 0.527);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 16px 0;
+  padding: 1rem;
+}
+#episodesMenuContainer > * {
+  /* border: 1px solid red; */
+  margin: 0.5rem 0;
+}
 /* Main section style  */
 main {
   padding: 0 16px;
@@ -195,14 +210,9 @@ article.openSummary p {
 /* RESPONSIVE MEDIA SCREENS (PHONE SIZE FIRST) */
 /* Tablet size */
 @media screen and (min-width: 600px) {
-  header {
-    align-items: center;
+  #episodesMenuContainer {
     flex-direction: row;
-    flex-wrap: wrap;
-  }
-  #episodeSelect,
-  #showSelect {
-    display: block;
+    justify-content: space-between;
   }
   header form {
     align-self: inherit;
