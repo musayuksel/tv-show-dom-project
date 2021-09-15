@@ -16,6 +16,10 @@ export default function showSelectMenu (showsArrayAlphabeticalOrder){
       fragment.appendChild(option)
     });
   }
+  const option = document.createElement('option');
+  option.text = 'SHOW ALL';
+  option.value = 'showAll';
+  fragment.appendChild(option);
   showSelect.appendChild(fragment);
 }
 

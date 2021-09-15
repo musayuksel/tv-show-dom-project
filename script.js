@@ -97,8 +97,14 @@ select.addEventListener('change',(event)=>{
 //SHOW SELECT MENU
 const showSelect = document.getElementById('showSelect');
 showSelect.addEventListener('change',(event)=>{
-  url =`https://api.tvmaze.com/shows/${event.target.value}/episodes`
-  fetchData(url)
+  const selectedValue = event.target.value;
+  if(selectedValue === 'showAll'){
+   document.getElementById('showSearch').value='';
+   makePageForSearchedEpisodes("");
+  }else {
+    url =`https://api.tvmaze.com/shows/${selectedValue}/episodes`
+    fetchData(url);
+  }
 });
 
 //SHOW SEARCH MENU
@@ -106,12 +112,15 @@ const  showSearch = document.getElementById('showSearch');
 const  showSearchLabel = document.getElementById('showSearchLabel');
 showSearch.addEventListener('input',(event)=>{
   event.preventDefault();
-  const showsIncludeInput = searchShow(showsArray,event.target.value )
-  deleteElementsWithCss(showsIncludeInput)
-  showSelectMenu(showsIncludeInput)
-  event.target.value === '' ? showSearchLabel.innerText ='':
-  showSearchLabel.innerText = `found ${showsIncludeInput.length} shows`;
+  makePageForSearchedEpisodes(event.target.value);
 })
 
 
 window.onload = getShows;
+ function makePageForSearchedEpisodes (input){
+    const showsIncludeInput = searchShow(showsArray,input )
+    deleteElementsWithCss(showsIncludeInput)
+    showSelectMenu(showsIncludeInput)
+    input === '' ? showSearchLabel.innerText ='':
+    showSearchLabel.innerText = `found ${showsIncludeInput.length} shows`;
+ }
