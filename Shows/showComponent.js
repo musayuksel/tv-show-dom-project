@@ -29,39 +29,25 @@ export default function showComponent(
 
   const statusContainer = document.createElement('article');
   statusContainer.className = 'statusContainer';
-  const ratedP = document.createElement('p');
-  ratedP.innerText = 'Rated: ';
-  const ratedSpan = document.createElement('span');
-  ratedSpan.innerText = rating.average;
-  ratedP.appendChild(ratedSpan);
-  statusContainer.appendChild(ratedP);
-
-  const genresP = document.createElement('p');
-  genresP.innerText = 'Genres: ';
-  const genresSpan = document.createElement('span');
-  genresSpan.innerText = genres.join(' | ');
-  genresP.appendChild(genresSpan);
-  statusContainer.appendChild(genresP);
-
-  const statusP = document.createElement('p');
-  statusP.innerText = 'Status: ';
-  const statusSpan = document.createElement('span');
-  statusSpan.innerText = status;
-  statusP.appendChild(statusSpan);
-  statusContainer.appendChild(statusP);
-
-  const runtimeP = document.createElement('p');
-  runtimeP.innerText = 'Runtime: ';
-  const runtimeSpan = document.createElement('span');
-  runtimeSpan.innerText = runtime;
-  runtimeP.appendChild(runtimeSpan);
-  statusContainer.appendChild(runtimeP);
-
-
+  
+  statusContainer.appendChild(statusItems('Rated: ',rating.average));
+  statusContainer.appendChild(statusItems('Genres: ',genres.join(' | ')));
+  statusContainer.appendChild(statusItems('Status: ',status));
+  statusContainer.appendChild(statusItems('Runtime: ',runtime));
+  
   showCard.appendChild(h2)
   showCard.appendChild(img)
   showCard.appendChild(showContainer)
   showCard.appendChild(statusContainer)
   return showCard;
 
+}
+
+function statusItems(pText,spanText){
+  const p = document.createElement('p');
+  p.innerText =pText;
+  const span = document.createElement('span');
+  span.innerText = spanText;
+  p.appendChild(span);
+  return p;
 }
