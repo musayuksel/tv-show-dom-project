@@ -33,6 +33,7 @@ header {
   padding: 1rem;
 }
 #logo {
+  cursor: pointer;
   height: 96px;
   padding: 1rem;
 }
@@ -48,7 +49,9 @@ header {
   cursor: pointer;
   padding: 10px;
 }
-/* for phone size we won't use it */
+#episodeSelect {
+  max-width: 80%;
+}
 
 header form {
   /* align-self: start; */
@@ -109,10 +112,13 @@ main li {
   box-shadow: 2px 5px 6px 2px rgba(110, 110, 110, 0.527);
   display: flex;
   flex-direction: column;
-  transition: all 0.8s ease;
+  transition: all 0.3s ease;
   position: relative; /* for summary*/
 }
-
+.card:hover {
+  box-shadow: 2px 5px 6px 2px rgba(110, 110, 110, 0.699);
+  transform: scale(1.01);
+}
 /* Card Heading style */
 .cardHeading {
   background-color: var(--raisin-black);

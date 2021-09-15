@@ -130,3 +130,4 @@ function makePageForSearchedEpisodes (input){
 
 
 window.onload = getShows;
+document.getElementById('logo').addEventListener('click',getShows);
