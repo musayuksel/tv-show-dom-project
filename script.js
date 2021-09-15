@@ -80,19 +80,25 @@ const seachArea = document.getElementById('search');
 const searchLabel = document.getElementById('searchLabel');
 seachArea.addEventListener('input', (event)=>{
   event.preventDefault();
-  const episodesIncludeInput= searchEpisode(allEpisodes ,seachArea.value);
-  seachArea.value === '' ? searchLabel.innerText ='':
+  makePageForSearchedShows(event.target.value);
+});
+function makePageForSearchedShows(input){
+  const episodesIncludeInput= searchEpisode(allEpisodes ,input);
+  input === '' ? searchLabel.innerText ='':
   searchLabel.innerText = `Displaying ${episodesIncludeInput.length}/${allEpisodes.length} episodes`;
-  
   deleteElementsWithCss(episodesIncludeInput)
   episodeSelectMenu(episodesIncludeInput);//update select menu
-});
-
+}
 //EPISODE SELECT MENU
 const select = document.getElementById('episodeSelect');
 select.addEventListener('change',(event)=>{
-  const selectedEpisode = searchEpisode(allEpisodes, event.target.value);
-  deleteElementsWithCss(selectedEpisode);
+  if(event.target.value === ''){
+    document.getElementById('search').value='';
+    makePageForSearchedShows('');
+  } else {
+    const selectedEpisode = searchEpisode(allEpisodes, event.target.value);
+    deleteElementsWithCss(selectedEpisode);
+  }
 });
 //SHOW SELECT MENU
 const showSelect = document.getElementById('showSelect');
@@ -114,13 +120,13 @@ showSearch.addEventListener('input',(event)=>{
   event.preventDefault();
   makePageForSearchedEpisodes(event.target.value);
 })
+function makePageForSearchedEpisodes (input){
+   const showsIncludeInput = searchShow(showsArray,input )
+   deleteElementsWithCss(showsIncludeInput)
+   showSelectMenu(showsIncludeInput)
+   input === '' ? showSearchLabel.innerText ='':
+   showSearchLabel.innerText = `found ${showsIncludeInput.length} shows`;
+}
 
 
 window.onload = getShows;
- function makePageForSearchedEpisodes (input){
-    const showsIncludeInput = searchShow(showsArray,input )
-    deleteElementsWithCss(showsIncludeInput)
-    showSelectMenu(showsIncludeInput)
-    input === '' ? showSearchLabel.innerText ='':
-    showSearchLabel.innerText = `found ${showsIncludeInput.length} shows`;
- }
