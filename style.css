@@ -27,7 +27,7 @@ header {
   box-shadow: 2px 5px 6px 2px rgba(110, 110, 110, 0.527);
   border-radius: 8px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
   padding: 1rem;
@@ -36,6 +36,18 @@ header {
   cursor: pointer;
   height: 96px;
   padding: 1rem;
+}
+#homePage {
+  border-bottom: 2px solid rgba(255, 255, 255, 0);
+  color: #f0f8ff;
+  cursor: pointer;
+  font-size: 1.25rem;
+  padding: 1rem 1rem 0.5rem;
+  transition: all 0.5s ease;
+  outline: none;
+}
+#homePage:hover {
+  border-color: var(--white);
 }
 
 #episodeSelect,

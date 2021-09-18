@@ -1,26 +1,26 @@
-export default function deleteElementsWithCss(shownElements){
+export default function deleteElementsWithCss(shownElementsArray) {
   // take original data and filtered data that you have to show
 
-  const allIDsShownElements =shownElements.map(e=>e.id+'');
+  const allIDsShownElements = shownElementsArray.map(
+    (element) => element.id + ""
+  );
   //take ids and convert to string because document ids are string
-  
 
-  //select all ids inside UL from document, 
-  const allIDNode=document.querySelectorAll('ul> *[id]');
-  const allID= Array.from(allIDNode).map(e=>e.id);
+  //select all ids inside UL from document,
+  const allIDNode = document.querySelectorAll("ul> *[id]");
+  const allID = Array.from(allIDNode).map((element) => element.id);
 
-  allID.forEach(currentID =>{
-    if (allIDsShownElements.includes(currentID)){ //delete class name 
-      document.getElementById(currentID).classList.remove('deleteOnScreen')
+  allID.forEach((currentID) => {
+    if (allIDsShownElements.includes(currentID)) {
+      //delete class name
+      document.getElementById(currentID).classList.remove("deleteOnScreen");
     } else {
-      document.getElementById(currentID).classList.add('deleteOnScreen')
+      document.getElementById(currentID).classList.add("deleteOnScreen");
     }
-  })
+  });
 }
-///css .deleteOnScreen {display:none}
 
-
-// TIME TEST FUNC
+// TIME TEST FUNC ===>STACKOVERFLOW
 // var t0 = performance.now()
 // ....testFunc()
 // var t1 = performance.now()
