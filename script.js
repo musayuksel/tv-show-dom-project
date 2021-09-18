@@ -7,9 +7,10 @@ import showComponent from "./Shows/showComponent.js";
 import makePageForEpisodes from "./Episodes/makePageForEpisodes.js";
 import makePageForSearchedShows from "./Shows/makePageForSearchedShows.js";
 import makePageForSearchedEpisodes from "./Episodes/makePageForSearchedEpisodes.js";
+import fetchData from "./fetchData.js";
 // import createEpisodeContainer from './Episodes/createEpisodeContainer.js'
 //take Episodes from DB
-let allEpisodes = []; // declared global because i will use with other func.
+let allEpisodesCache = []; // declared global because i will use with other func.
 let url = "";
 let showsArray = [];
 
@@ -20,22 +21,20 @@ function getShows() {
   showSelectMenu(showsArray);
 }
 
-async function fetchEpisodesFromAPI(
-  url = "https://api.tvmaze.com/shows/5/episodes"
-) {
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    allEpisodes = data;
-    setup();
-  } catch (e) {
-    console.log("Oops! Error: ", e);
-  }
+async function fetchEpisodesFromAPI(url) {
+  fetchData(url)
+    .then((episodes) => {
+      allEpisodesCache = episodes;
+      setup();
+    })
+    .catch((e) => {
+      console.log("Oops!", e);
+    });
 }
 
 function setup() {
-  episodeSelectMenu(allEpisodes);
-  makePageForEpisodes(allEpisodes);
+  episodeSelectMenu(allEpisodesCache);
+  makePageForEpisodes(allEpisodesCache);
 }
 
 const rootElem = document.getElementById("root"); //i will use for 2 function
@@ -62,7 +61,7 @@ function makePageForShows(showList) {
 const seachArea = document.getElementById("search");
 seachArea.addEventListener("input", (event) => {
   event.preventDefault();
-  makePageForSearchedEpisodes(allEpisodes, event.target.value);
+  makePageForSearchedEpisodes(allEpisodesCache, event.target.value);
 });
 
 //EPISODE SELECT MENU
@@ -70,12 +69,19 @@ const select = document.getElementById("episodeSelect");
 select.addEventListener("change", (event) => {
   if (event.target.value === "") {
     document.getElementById("search").value = "";
-    makePageForSearchedEpisodes(allEpisodes, "");
+    makePageForSearchedEpisodes(allEpisodesCache, "");
   } else {
-    const selectedEpisode = searchEpisode(allEpisodes, event.target.value);
+    const selectedEpisode = searchEpisode(allEpisodesCache, event.target.value);
     deleteElementsWithCss(selectedEpisode);
   }
 });
+//SHOW SEARCH MENU
+const showSearch = document.getElementById("showSearch");
+showSearch.addEventListener("input", (event) => {
+  event.preventDefault();
+  makePageForSearchedShows(showsArray, event.target.value);
+});
+
 //SHOW SELECT MENU
 const showSelect = document.getElementById("showSelect");
 showSelect.addEventListener("change", (event) => {
@@ -89,13 +95,7 @@ showSelect.addEventListener("change", (event) => {
   }
 });
 
-//SHOW SEARCH MENU
-const showSearch = document.getElementById("showSearch");
-showSearch.addEventListener("input", (event) => {
-  event.preventDefault();
-  makePageForSearchedShows(showsArray, event.target.value);
-});
-
-window.onload = getShows;
 document.getElementById("homePage").addEventListener("click", getShows);
 document.getElementById("logo").addEventListener("click", getShows);
+
+window.onload = getShows;
