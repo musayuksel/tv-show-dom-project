@@ -14,21 +14,23 @@ let url = "";
 let showsArray = [];
 
 function getShows() {
-  //getAllShows funct will work one time
   showsArray = getAllShows();
   alphabeticalOrder(showsArray);
   makePageForShows(showsArray);
   showSelectMenu(showsArray);
-  document.getElementById("showSearch").value = "";
 }
 
-function fetchData(url = "https://api.tvmaze.com/shows/5/episodes") {
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      allEpisodes = data;
-      setup();
-    });
+async function fetchEpisodesFromAPI(
+  url = "https://api.tvmaze.com/shows/5/episodes"
+) {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    allEpisodes = data;
+    setup();
+  } catch (e) {
+    console.log("Oops! Error: ", e);
+  }
 }
 
 function setup() {
@@ -49,7 +51,7 @@ function makePageForShows(showList) {
     const showCard = showComponent(show);
     showCard.addEventListener("click", () => {
       url = `https://api.tvmaze.com/shows/${show.id}/episodes`;
-      fetchData(url);
+      fetchEpisodesFromAPI(url);
     });
     main.appendChild(showCard);
   });
@@ -83,13 +85,12 @@ showSelect.addEventListener("change", (event) => {
     makePageForSearchedShows(showsArray, "");
   } else {
     url = `https://api.tvmaze.com/shows/${selectedValue}/episodes`;
-    fetchData(url);
+    fetchEpisodesFromAPI(url);
   }
 });
 
 //SHOW SEARCH MENU
 const showSearch = document.getElementById("showSearch");
-const showSearchLabel = document.getElementById("showSearchLabel");
 showSearch.addEventListener("input", (event) => {
   event.preventDefault();
   makePageForSearchedShows(showsArray, event.target.value);
@@ -97,3 +98,4 @@ showSearch.addEventListener("input", (event) => {
 
 window.onload = getShows;
 document.getElementById("homePage").addEventListener("click", getShows);
+document.getElementById("logo").addEventListener("click", getShows);
